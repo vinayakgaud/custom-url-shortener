@@ -19,8 +19,10 @@ export async function generateShortURLHandler(req, res){
         redirectURL: body.url,
         visitedHistory: []
     });
-
-    return res.status(201).json({msg: `short url is generated successfully: http://localhost:3000/url/${shortID}`})
+    return res.status(201).render('home',{
+        msg: `http://localhost:3000/url/${shortID}`
+    })
+    // return res.status(201).json({msg: `short url is generated successfully: http://localhost:3000/url/${shortID}`})
 }
 
 export async function getURLByShortIDHandler(req, res){
