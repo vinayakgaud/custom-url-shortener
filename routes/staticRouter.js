@@ -11,6 +11,12 @@ router.get('/',async (req, res)=>{
     })
 })
 
+router.get('/signup', (req, res)=>{
+    return res.render('signup')
+})
 
+router.get('/loginPage',(req, res)=>{
+    return res.render('login')
+})
 
 export default router;
