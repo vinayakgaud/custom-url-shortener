@@ -25,9 +25,10 @@ export async function loginUserHandler(req, res){
             error: 'Please enter valid credentials'
         })
     }else{
-        const sessionID = uuidv4();
-        setUser(sessionID, User)
-        res.cookie('uuid', sessionID)
+        // const sessionID = uuidv4(); //no need to create ids
+        // setUser(sessionID, User)
+        const token = setUser(user)
+        res.cookie('uid', token)
         return res.redirect('/')
     }
 }
