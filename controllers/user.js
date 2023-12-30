@@ -18,7 +18,7 @@ export async function loginUserHandler(req, res){
     const {email, password} = req.body
     const User = await user.findOne({
         email,
-        password
+        password,
     })
     if(!User){
         return res.render('login',{
@@ -27,8 +27,8 @@ export async function loginUserHandler(req, res){
     }else{
         // const sessionID = uuidv4(); //no need to create ids
         // setUser(sessionID, User)
-        const token = setUser(user)
-        res.cookie('uid', token)
+        const token = setUser(User)
+        res.cookie('token', token)
         return res.redirect('/')
     }
 }

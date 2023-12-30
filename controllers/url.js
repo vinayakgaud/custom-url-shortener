@@ -17,7 +17,8 @@ export async function generateShortURLHandler(req, res){
     await url.create({
         shortID: shortID,
         redirectURL: body.url,
-        visitedHistory: []
+        visitedHistory: [],
+        createdBy: req.user._id
     });
     return res.status(201).render('home',{
         msg: `http://localhost:3000/url/${shortID}`
