@@ -6,10 +6,11 @@ import staticRoute from './routes/staticRouter.js'
 import userRoute from './routes/user.js'
 import cookieParser from 'cookie-parser'
 import {checkAuthentication, restrictTo} from './middlewares/auth.js'
+import 'dotenv/config'
 
-connectToDB('mongodb://127.0.0.1:27017/short-url')
+connectToDB(process.env.MONGO_DB)
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 app.set('view engine','ejs') //telling express that we are using ejs as template engine
 app.set('views', path.resolve('./views')) //telling express that all views files are under this folder
 
