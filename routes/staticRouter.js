@@ -1,11 +1,19 @@
 //static router is for frontend routes
 import { Router } from "express";
 import URL from "../models/url.js";
+import { restrictTo } from "../middlewares/auth.js";
 
 const router = Router();
 
-router.get('/',async (req, res)=>{
-    if(!req.user) return res.redirect('/login');
+router.get('/admin', restrictTo(["ADMIN"]), async (req, res)=>{
+    const allurl =await  URL.find({});
+    return res.render('home',{
+        urls: allurl
+    })
+})
+
+router.get('/', restrictTo(["ADMIN", "NORMAL"]), async (req, res)=>{
+    // if(!req.user) return res.redirect('/login');
     const allurl =await  URL.find({ createdBy: req.user._id });
     return res.render('home',{
         urls: allurl

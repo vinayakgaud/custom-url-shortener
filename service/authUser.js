@@ -8,7 +8,8 @@ export function setUser(user){
     //creating payload with user data
     return jwt.sign({
         id: user._id,
-        email: user.email
+        email: user.email,
+        role: user.role
     }, secretKey) //creating token, 1st para is payload , 2nd is secretKey to encode, payload needs to be plain object
 }
 
